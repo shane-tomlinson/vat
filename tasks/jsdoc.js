@@ -5,8 +5,17 @@
 module.exports = function (grunt) {
   'use strict';
 
-  grunt.config('clean', {
-    build: ['.tmp', 'build'],
-    docs: ['docs']
+  grunt.config('jsdoc', {
+    dist: {
+      options: {
+        destination: 'docs'
+      },
+      src: ['lib/**/*.js', 'README.md']
+    }
   });
+
+  grunt.registerTask('docs', [
+    'clean:docs',
+    'jsdoc'
+  ]);
 };
