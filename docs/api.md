@@ -338,13 +338,17 @@ const minLengthSchema = vat.string().min(1);
 
 ## Validation Errors
 ### `ReferenceError`
-Returned if a required field is missing from the passed in data object or is undefined.
+Returned in the following cases:
 
-If validating an object, returned error will contain a `key` field that
+* Vat.validate is called without a schema.
+* A required field is missing or undefined.
+* An unknown key is present and `allowUnknown` is `false`.
+
+If validating an object, the returned error will contain a `key` field that
 contains the name of the failed item.
 
 ### `TypeError`
 Returned if a field is defined but does not pass validation.
 
-If validating an object, returned error will contain a `key` field that
+If validating an object, the returned error will contain a `key` field that
 contains the name of the failed item.
